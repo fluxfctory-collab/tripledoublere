@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { leadership } from "../data/site";
 import { Arrow, Img, Reveal } from "./primitives";
 
 export function About() {
+  // Pointer devices reveal the bio on hover; touch and keyboard toggle this.
+  const [open, setOpen] = useState<number | null>(null);
+
   return (
     <section className="section about" id="about" aria-labelledby="ab-h">
       <div className="container">
@@ -39,19 +43,46 @@ export function About() {
         </div>
 
         <ul className="about__people">
-          {leadership.map((p, i) => (
-            <Reveal className="person" as="li" key={p.name} delay={i * 80}>
-              <Img
-                name={p.image}
-                widths={[360, 520, 760]}
-                sizes="(max-width: 560px) 44vw, (max-width: 1000px) 23vw, 290px"
-                alt={`Portrait of ${p.name.replace(/[“”]/g, "")}, ${p.role} of Triple Double Real Estate.`}
-                className="person__img"
-              />
-              <h3 className="person__name">{p.name}</h3>
-              <p className="label person__role">{p.role}</p>
-            </Reveal>
-          ))}
+          {leadership.map((p, i) => {
+            const bioId = `bio-${p.image}`;
+            const isOpen = open === i;
+            return (
+              <Reveal
+                className={`person ${isOpen ? "is-open" : ""}`}
+                as="li"
+                key={p.name}
+                delay={(i % 3) * 70}
+              >
+                <button
+                  type="button"
+                  className="person__btn"
+                  aria-expanded={isOpen}
+                  aria-controls={bioId}
+                  onClick={() => setOpen(isOpen ? null : i)}
+                >
+                  <span className="person__frame">
+                    <Img
+                      name={p.image}
+                      widths={[360, 520, 760, 1000]}
+                      sizes="(max-width: 560px) 88vw, (max-width: 1000px) 44vw, 400px"
+                      alt={`Portrait of ${p.name.replace(/[“”]/g, "")}, ${p.role} of Triple Double Real Estate.`}
+                      className="person__img"
+                    />
+                    <span className="person__bio" id={bioId}>
+                      <span className="person__bio-text">{p.bio}</span>
+                      <span className="label person__cue">
+                        {isOpen ? "Close" : "Read bio"}
+                      </span>
+                    </span>
+                  </span>
+                  <span className="person__meta">
+                    <span className="person__name">{p.name}</span>
+                    <span className="label person__role">{p.role}</span>
+                  </span>
+                </button>
+              </Reveal>
+            );
+          })}
         </ul>
       </div>
     </section>

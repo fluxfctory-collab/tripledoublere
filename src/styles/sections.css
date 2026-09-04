@@ -777,26 +777,90 @@
 
 .about__people {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.9rem, 0.2rem + 1.6vw, 1.75rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 0.4rem + 2vw, 2.25rem);
   padding-top: clamp(1rem, 0.5rem + 1.5vw, 2rem);
   border-top: 1px solid var(--c-rule);
+}
+
+/* The whole card is the control: hover on pointer devices, tap or Enter
+   elsewhere. aria-expanded carries the state to assistive tech. */
+.person__btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+
+.person__frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--c-stone-3);
 }
 
 .person__img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.04);
-  transition: filter 700ms var(--e-out);
+  transition: transform 700ms var(--e-out);
 }
 
-.person:hover .person__img {
-  filter: grayscale(0) contrast(1);
+.person__bio {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--s-4);
+  padding: clamp(1.1rem, 0.6rem + 1.4vw, 1.75rem);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 26, 52, 0.86) 0%,
+    rgba(0, 22, 44, 0.95) 55%,
+    rgba(0, 20, 40, 0.97) 100%
+  );
+  color: var(--c-on-dark);
+  opacity: 0;
+  transition:
+    opacity var(--d-mid) var(--e-out),
+    transform var(--d-mid) var(--e-out);
+  transform: translateY(10px);
+}
+
+.person__bio-text {
+  font-size: var(--t-small);
+  line-height: 1.62;
+  color: var(--c-on-dark);
+  overflow-y: auto;
+  text-wrap: pretty;
+}
+
+.person__cue {
+  flex: none;
+  color: var(--c-accent);
+  font-size: var(--t-nano);
+}
+
+.person__btn:hover .person__bio,
+.person__btn:focus-visible .person__bio,
+.person.is-open .person__bio {
+  opacity: 1;
+  transform: none;
+}
+
+.person__btn:hover .person__img,
+.person.is-open .person__img {
+  transform: scale(1.03);
+}
+
+.person__meta {
+  display: block;
+  padding-top: var(--s-4);
 }
 
 .person__name {
-  margin-top: var(--s-4);
+  display: block;
   font-family: var(--f-display);
   font-size: var(--t-body);
   font-weight: 600;
@@ -806,14 +870,24 @@
 }
 
 .person__role {
+  display: block;
   margin-top: 0.42rem;
   color: var(--c-text-faint);
-  font-family: var(--f-sans);
   font-size: var(--t-nano);
-  font-weight: 600;
-  letter-spacing: var(--ls-ui);
-  text-transform: uppercase;
   line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .about__people {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .about__people {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
 }
 
 @media (max-width: 1000px) {
@@ -827,12 +901,6 @@
   }
 }
 
-@media (max-width: 560px) {
-  .about__people {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--s-6) var(--s-4);
-  }
-}
 
 /* ==========================================================================
    06 — Closing CTA + footer

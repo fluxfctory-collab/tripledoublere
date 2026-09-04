@@ -165,12 +165,36 @@ export const leadership = [
     name: "Andrew “Avi” Greenbaum",
     role: "Chief Executive Officer",
     image: "ldr-greenbaum",
+    bio: "As Triple Double RE’s CEO, Andrew leads a team that uses strategies honed over nearly two decades of real estate development and management. Specializing in the medical and commercial office sectors, as well as hotel-to-residential conversion projects, Andrew and his team add value to projects through avenues including adaptive re-use, lease-up and renovation.",
   },
-  { name: "Heath Wruble", role: "Chief Operating Officer", image: "ldr-wruble" },
+  {
+    name: "Heath Wruble",
+    role: "Chief Operating Officer",
+    image: "ldr-wruble",
+    bio: "Heath Wruble is an accomplished business executive and entrepreneur currently serving as the Chief Operating Officer and the Chief Compliance Officer of Triple Double Real Estate. Working closely with Andrew Greenbaum, Heath oversees the firm’s management, administration, and operational procedures. With a wealth of experience earned over more than 25 years on Wall Street, Heath brings a unique perspective to the real estate sector.",
+  },
   {
     name: "Kadion Preston",
     role: "Chief Growth & Strategy Officer",
     image: "ldr-preston",
+    bio: "Kadion Preston is Chief Growth & Strategy Officer of Triple Double Holdings, a company operating across affordable housing, modular construction, manufacturing, and regional commerce infrastructure. He leads growth strategy and commercial execution across the portfolio, helping scale ventures designed to solve critical infrastructure challenges.",
   },
-  { name: "Karen Ives", role: "VP of Operations", image: "ldr-ives" },
+  {
+    name: "Karen Ives",
+    role: "VP of Operations",
+    image: "ldr-ives",
+    bio: "Karen Ives is a seasoned real estate and operations executive whose career began in residential real estate in 2015 and quickly expanded into commercial acquisitions, investment strategy, and multi-market execution across Florida, Chicago, and South Carolina. She oversees key operational functions across the company’s properties, helps evaluate new ventures, and ensures priorities, decisions, and follow-through remain aligned across the business.",
+  },
+  {
+    name: "Shiv Newaldass",
+    role: "Real Estate Executive & Development Strategist",
+    image: "ldr-newaldass",
+    bio: "Shiv Newaldass is a seasoned real estate executive, urban redevelopment strategist, and public-sector leader with more than two decades of experience across development, government, infrastructure, and community transformation. He is recognized for his expertise in entitlements, acquisitions, asset management, zoning, and complex urban redevelopment.",
+  },
+  {
+    name: "Sammy Rhein",
+    role: "Director of Brokerage and Leasing of Medical Office Brokers",
+    image: "ldr-rhein",
+    bio: "Sammy Rhein is the Director of Brokerage and Leasing of Medical Office Brokers (MOB). He manages Triple Double’s leasing portfolio, overseeing lease-up strategies and leasing terms for the company. Sammy has helped fill millions of square feet of office and retail space since joining Triple Double in 2019.",
+  },
 ];

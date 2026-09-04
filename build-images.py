@@ -189,21 +189,30 @@ for name, f, anchor in [
 print("LEADERSHIP PORTRAITS  (originals are 1000x1250 — crop + tone only)")
 # Each source frames its subject differently. These sub-crops normalise head
 # scale and put every eye line at 24% of the frame; nothing is retouched and no
-# crop falls below 760px, so the whole set keeps one srcset.
+# crop falls below 760px, so the whole set keeps one srcset. Colour is kept
+# close to the originals so skin tones stay natural.
 PORTRAITS = [
-    ("ldr-greenbaum", "Andrew-Greenbaum-1000x1250-2.jpg", 454, 238, 780),
-    ("ldr-wruble", "Heath-Wruble-1000x1250-2.jpg", 500, 300, 1000),
-    ("ldr-preston", "Kadion-Preston-1000x1250-2.jpg", 500, 219, 810),
-    ("ldr-ives", "Karen-Ives-1000x1250-Corrected.jpg", 590, 338, 885),
+    ("ldr-greenbaum", "Andrew-Greenbaum-1000x1250-2.jpg", 455, 240, 786),
+    ("ldr-wruble", "Heath-Wruble-1000x1250-2.jpg", 480, 300, 1000),
+    ("ldr-preston", "Kadion-Preston-1000x1250-2.jpg", 525, 220, 786),
+    ("ldr-ives", "Karen-Ives-1000x1250-Corrected.jpg", 590, 340, 881),
+    ("ldr-newaldass", "Shiv-1000x1250-2.jpg", 485, 275, 857),
+    ("ldr-rhein", "Sammy-Rhein-1000x1250-1.jpg", 470, 275, 1000),
 ]
 _portraits = [
-    (n, grade(load(f), sat=0.58, contrast=1.06, bright=0.98, cool=0.03), cx, cy, cw)
+    (n, grade(load(f), sat=0.95, contrast=1.04, bright=0.99, cool=0.015), cx, cy, cw)
     for n, f, cx, cy, cw in PORTRAITS
 ]
 _target = sum(mean_luma(im) for _, im, *_ in _portraits) / len(_portraits)
 for name, im, cx, cy, cw in _portraits:
-    im = match_luma(im, _target)
-    emit(crop_box(im, cx, cy, cw), name, [760, 520, 360], 86)
+    im = match_luma(im, _target, strength=0.5)
+    im = crop_box(im, cx, cy, cw)
+    # Normalising head scale costs some width; bring every crop back to a
+    # common 1000px so the whole set shares one srcset and covers a 3x phone.
+    if im.width < 1000:
+        im = im.resize((1000, int(round(im.height * 1000 / im.width))), Image.LANCZOS)
+        im = edge_unsharp(im, amount=0.45, radius=0.9, floor=0.22)
+    emit(im, name, [1000, 760, 520, 360], 86)
 
 print("APPROACH BAND TEXTURE  (held at ~4% behind a navy gradient)")
 ap = grade(load("image35.jpg"), sat=0.18, contrast=1.05, bright=0.70, cool=0.08)
