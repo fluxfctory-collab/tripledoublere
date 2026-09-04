@@ -79,8 +79,8 @@
   /* ---- Layout ---------------------------------------------------------- */
   --container: 1320px;
   --container-narrow: 940px;
-  --header-h: 112px;
-  --logo-h: 78px;
+  --header-h: 128px;
+  --logo-h: 106px;
   --radius: 2px;
 
   /* ---- Motion ---------------------------------------------------------- */
@@ -93,7 +93,7 @@
 
 @media (max-width: 900px) {
   :root {
-    --header-h: 94px;
-    --logo-h: 66px;
+    --header-h: 106px;
+    --logo-h: 86px;
   }
 }

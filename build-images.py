@@ -212,7 +212,7 @@ emit(crop_ratio(ap, 32 / 9, (0.5, 0.5)), "band", [1600, 1100], 78, post_sharpen=
 print("LOGOS")
 logo = Image.open(os.path.join(SRC, "TRIPLE-DOUBLE-Real-Estate-PNG-File-1.png")).convert("RGBA")
 logo = logo.resize((logo.width * 3, logo.height * 3), Image.LANCZOS)   # 900x450
-logo = logo.resize((520, 260), Image.LANCZOS)   # 2-3x of every rendered size
+logo = logo.resize((800, 400), Image.LANCZOS)   # 2-3x of every rendered size
 logo.save(f"{OUT}/logo-navy.png", optimize=True)
 px = logo.load()
 for y in range(logo.height):

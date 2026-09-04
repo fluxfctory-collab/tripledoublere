@@ -56,15 +56,15 @@ export function Header() {
         <a className="hdr__brand" href="#top" aria-label="Triple Double Real Estate — home">
           <img
             src="/img/logo-white.png"
-            width="520"
-            height="260"
+            width="800"
+            height="400"
             alt=""
             className="hdr__logo hdr__logo--light"
           />
           <img
             src="/img/logo-navy.png"
-            width="520"
-            height="260"
+            width="800"
+            height="400"
             alt=""
             className="hdr__logo hdr__logo--dark"
           />

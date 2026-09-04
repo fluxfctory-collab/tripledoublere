@@ -51,7 +51,7 @@ export function Footer() {
       <div className="container">
         <div className="foot__top">
           <a className="foot__brand" href="#top" aria-label="Triple Double Real Estate — back to top">
-            <img src="/img/logo-white.png" width="520" height="260" alt="" />
+            <img src="/img/logo-white.png" width="800" height="400" alt="" />
             <span className="sr-only">Triple Double Real Estate</span>
           </a>
 
