@@ -73,6 +73,15 @@ def edge_unsharp(im, amount=0.85, radius=1.15, edge_sigma=2.2, floor=0.18):
     return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
 
 
+def local_contrast(im, amount=0.32, sigma=16.0):
+    """Large-radius, low-amount unsharp. Adds depth to flat, low-micro-contrast
+    surfaces such as reflective glass without haloing edges or faking HDR."""
+    arr = np.asarray(im, dtype=np.float32)
+    base = np.stack([_blur(arr[..., c], sigma) for c in range(3)], axis=-1)
+    out = arr + amount * (arr - base)
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+
+
 def super_res_2x(im, amount=0.85):
     """Conservative 2x upscale. Used only where no larger original exists."""
     im = denoise(im)
@@ -159,9 +168,18 @@ emit(crop_ratio(hero_base, 16 / 9, (0.58, 0.30)), "hero", [2489, 1920, 1440, 102
 emit(crop_ratio(hero_base, 3 / 4, (0.60, 0.42)), "hero-portrait", [1050, 760, 560], 82)
 
 print("FEATURED  (44 W Flagler St, Miami — right half of a stitched 1400x700)")
+# Neither half of this stitched source has a larger original (700x700 each, and
+# the media API confirms 1400x700 is the full size). The left half measures
+# slightly more edge energy but is dominated by street signage and leasing
+# banners, so it does not carry a featured-asset frame. This tower view keeps
+# the section's tone; the softness was low micro-contrast in the reflective
+# glass rather than missing detail, so it gets a restrained local-contrast pass
+# before the upscale and a firmer edge-masked sharpen after it.
 fl = load("image41-1-1.jpg").crop((700, 0, 1400, 700))          # 700x700 native
-fl = grade(super_res_2x(fl, amount=1.0), sat=0.66, contrast=1.10)
-emit(crop_ratio(fl, 4 / 5, (0.52, 0.35)), "flagler", [1120, 800, 560], 86)
+fl = local_contrast(denoise(fl), amount=0.34, sigma=16.0)
+fl = grade(super_res_2x(fl, amount=1.15), sat=0.66, contrast=1.10)
+fl = edge_unsharp(fl, amount=0.34, radius=1.0, floor=0.16)
+emit(crop_ratio(fl, 4 / 5, (0.52, 0.35)), "flagler", [1120, 800, 560], 88)
 
 print("PORTFOLIO CARDS  (native resolution is already sufficient — sharpen only)")
 for name, f, anchor in [
