@@ -56,8 +56,8 @@ export function Hero() {
           others see complexity.
         </h1>
         <p className="hero__lead">
-          A South Florida investment firm that buys, repositions and operates
-          under-performing buildings.
+          A South Florida investment firm. We reposition and operate what we
+          own.
         </p>
         <div className="hero__actions">
           <a className="btn btn--light" href="#portfolio">

@@ -379,7 +379,8 @@
   font-size: var(--t-lead);
   line-height: 1.6;
   color: rgba(243, 241, 236, 0.9);
-  text-wrap: pretty;
+  /* even line lengths now that the line is short — wrapping only, no resize */
+  text-wrap: balance;
 }
 
 .hero__actions {
