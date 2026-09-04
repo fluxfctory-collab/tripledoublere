@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Submission board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #00274c;
+        --navy-deep: #001a34;
+        --stone: #f4f2ed;
+        --accent: #ffcb05;
+        --rule: rgba(0, 39, 76, 0.16);
+        --mono: "IBM Plex Mono", monospace;
+        --sans: "Manrope", sans-serif;
+        --display: "Instrument Sans", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--stone);
+        font-family: var(--sans);
+        color: #17222f;
+        width: 3060px;
+      }
+      .mono {
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      /* ---- masthead ---- */
+      header {
+        background: var(--navy);
+        color: #f3f1ec;
+        padding: 78px 90px 70px;
+      }
+      .top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 80px;
+      }
+      .brand img { height: 62px; display: block; }
+      .brand .mono { color: #6d8398; margin-top: 26px; }
+      h1 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 76px;
+        line-height: 1.03;
+        letter-spacing: -0.035em;
+        margin: 0;
+        max-width: 16ch;
+      }
+      .kicker { color: var(--accent); margin: 0 0 26px; }
+      .sub {
+        max-width: 62ch;
+        margin: 30px 0 0;
+        font-size: 21px;
+        line-height: 1.6;
+        color: #a9bacb;
+      }
+
+      /* ---- system strip ---- */
+      .system {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+        margin-top: 78px;
+        padding-top: 42px;
+        border-top: 1px solid rgba(243, 241, 236, 0.18);
+      }
+      .system h2 { margin: 0 0 22px; color: #6d8398; font-weight: 400; }
+      .swatches { display: flex; gap: 14px; }
+      .sw { width: 84px; }
+      .sw i { display: block; height: 84px; border: 1px solid rgba(243, 241, 236, 0.2); }
+      .sw span {
+        display: block;
+        margin-top: 12px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.09em;
+        color: #a9bacb;
+      }
+      .type-row { font-size: 20px; line-height: 1.75; color: #f3f1ec; }
+      .type-row b { font-weight: 400; color: #6d8398; font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; }
+      .spec-serif { font-family: var(--display); font-weight: 700; font-size: 32px; letter-spacing: -0.03em; }
+      .spec-mono { font-family: var(--mono); font-size: 17px; letter-spacing: 0.1em; }
+
+      /* ---- frames ---- */
+      main { padding: 96px 90px 90px; }
+      .frames { display: flex; align-items: flex-start; gap: 90px; }
+      figure { margin: 0; }
+      figcaption {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 18px;
+        margin-bottom: 22px;
+        border-bottom: 1px solid var(--rule);
+        color: #4d5b6b;
+      }
+      figcaption b { color: var(--navy); font-weight: 400; }
+      figure img {
+        display: block;
+        border: 1px solid var(--rule);
+        box-shadow: 0 40px 90px -50px rgba(0, 26, 52, 0.55);
+      }
+      .f-desktop img { width: 1440px; }
+      .f-tablet img { width: 834px; }
+      .f-mobile img { width: 390px; }
+
+      footer {
+        padding: 46px 90px 60px;
+        border-top: 1px solid var(--rule);
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        color: #7c8794;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="top">
+        <div>
+          <p class="mono kicker">Homepage concept · Design contest entry</p>
+          <h1>Creating value where others see complexity.</h1>
+          <p class="sub">
+            An original editorial-institutional homepage concept for Triple
+            Double Real Estate — an integrated real estate investment,
+            operations and management firm. Photography, portfolio facts and
+            brand marks are the company's own; every figure shown is drawn from
+            its published material.
+          </p>
+        </div>
+        <div class="brand">
+          <img src="/img/logo-white.png" alt="Triple Double Real Estate" />
+          <p class="mono">Deerfield Beach, Florida</p>
+        </div>
+      </div>
+
+      <div class="system">
+        <div>
+          <h2 class="mono">Palette</h2>
+          <div class="swatches">
+            <div class="sw"><i style="background:#00274c"></i><span>00274C</span></div>
+            <div class="sw"><i style="background:#001a34"></i><span>001A34</span></div>
+            <div class="sw"><i style="background:#f4f2ed"></i><span>F4F2ED</span></div>
+            <div class="sw"><i style="background:#eae6de"></i><span>EAE6DE</span></div>
+            <div class="sw"><i style="background:#ffcb05"></i><span>FFCB05</span></div>
+          </div>
+        </div>
+        <div class="type-row">
+          <b>Display</b>
+          <div class="spec-serif">Instrument Sans — 600 / 700</div>
+        </div>
+        <div class="type-row">
+          <b>Interface &amp; body</b>
+          <div style="font-size: 28px; font-weight: 500">Manrope — 400 / 500 / 600</div>
+        </div>
+        <div class="type-row">
+          <b>Data &amp; labels</b>
+          <div class="spec-mono">IBM PLEX MONO — 400</div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="frames">
+        <figure class="f-desktop">
+          <figcaption class="mono"><b>Desktop</b><span>1440 px</span></figcaption>
+          <img src="/screenshots/desktop-1440.png" alt="Desktop homepage at 1440 pixels" />
+        </figure>
+        <figure class="f-tablet">
+          <figcaption class="mono"><b>Tablet</b><span>834 px</span></figcaption>
+          <img src="/screenshots/tablet-834.png" alt="Tablet homepage at 834 pixels" />
+        </figure>
+        <figure class="f-mobile">
+          <figcaption class="mono"><b>Mobile</b><span>390 px</span></figcaption>
+          <img src="/screenshots/mobile-390.png" alt="Mobile homepage at 390 pixels" />
+        </figure>
+      </div>
+    </main>
+
+    <footer>
+      <p class="mono">Triple Double Real Estate — homepage concept</p>
+      <p class="mono">Full-page captures · React + Vite + TypeScript · Custom CSS</p>
+    </footer>
+  </body>
+</html>

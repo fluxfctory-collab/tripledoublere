@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Presentation boards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #00274c;
+        --deep: #001a34;
+        --stone: #f4f2ed;
+        --soft: #b3c2d1;
+        --faint: #8ba0b5;
+        --accent: #ffcb05;
+        --display: "Instrument Sans", sans-serif;
+        --sans: "Manrope", sans-serif;
+        --mono: "IBM Plex Mono", monospace;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      body { background: #222; font-family: var(--sans); }
+
+      .board {
+        position: relative;
+        width: 1920px;
+        background: var(--deep);
+        color: var(--stone);
+        overflow: hidden;
+      }
+      .board--tall { height: 1200px; }
+      .board--cover { height: 1080px; padding: 0; }
+
+      /* hairline column grid, echoing the site */
+      .grid {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        padding: 0 110px;
+        pointer-events: none;
+      }
+      .grid i { border-left: 1px solid rgba(243, 241, 236, 0.045); }
+
+      .mono {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .label {
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+      }
+
+      /* ---------- shared masthead ---------- */
+      .bar {
+        position: absolute;
+        top: 58px;
+        left: 110px;
+        right: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 26px;
+        border-bottom: 1px solid rgba(243, 241, 236, 0.14);
+      }
+      .bar img { height: 34px; display: block; }
+      .bar .mono { color: var(--faint); }
+
+      /* ---------- caption column ---------- */
+      .cap { position: absolute; left: 110px; width: 400px; }
+      .cap .idx {
+        display: flex; align-items: center; gap: 14px;
+        color: var(--faint); margin-bottom: 26px;
+      }
+      .cap .idx::before {
+        content: ""; width: 38px; height: 2px; background: var(--accent);
+      }
+      .cap h2 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 42px;
+        line-height: 1.05;
+        letter-spacing: -0.032em;
+        color: #fff;
+      }
+      .cap p {
+        margin-top: 22px;
+        font-size: 16px;
+        line-height: 1.62;
+        color: var(--soft);
+      }
+      .cap ul { margin-top: 26px; padding: 0; list-style: none; }
+      .cap li {
+        display: flex; gap: 14px; align-items: baseline;
+        padding: 11px 0;
+        border-top: 1px solid rgba(243, 241, 236, 0.11);
+        font-size: 14.5px;
+        color: var(--soft);
+      }
+      .cap li:last-child { border-bottom: 1px solid rgba(243, 241, 236, 0.11); }
+      .cap li b { color: var(--accent); font-weight: 500; font-family: var(--mono); font-size: 12px; }
+
+      /* ---------- screenshot plates ---------- */
+      .shot {
+        display: block;
+        outline: 1px solid rgba(243, 241, 236, 0.16);
+        box-shadow: 0 50px 90px -50px rgba(0, 0, 0, 0.8);
+      }
+      .plate { position: absolute; }
+      .plate figcaption {
+        margin-top: 16px;
+        display: flex; justify-content: space-between;
+        color: var(--faint);
+      }
+
+      /* ---------- 01 cover ---------- */
+      .board--cover { display: flex; flex-direction: column; }
+      .cover-img { display: block; width: 1920px; }
+      .cover-tag {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 110px;
+        background: var(--deep);
+        border-top: 1px solid rgba(243, 241, 236, 0.14);
+      }
+      .cover-tag .lead-rule {
+        display: inline-block;
+        width: 46px;
+        height: 2px;
+        background: var(--accent);
+        margin-right: 20px;
+        vertical-align: middle;
+      }
+      .cover-tag .label { color: rgba(243, 241, 236, 0.95); }
+      .cover-tag .mono { color: var(--faint); }
+
+      /* one board per render */
+      body[data-only] .board { display: none; }
+      body[data-only="b01"] #b01,
+      body[data-only="b02"] #b02,
+      body[data-only="b03"] #b03,
+      body[data-only="b04"] #b04,
+      body[data-only="b05"] #b05 { display: block; }
+      body[data-only="b01"] #b01 { display: flex; }
+    </style>
+  </head>
+  <body>
+    <!-- ============ 01 COVER 1920x1080 ============ -->
+    <section class="board board--cover" id="b01">
+      <img class="cover-img" src="/screenshots/_press/cover.png" alt="" />
+      <div class="cover-tag">
+        <p class="label">
+          <span class="lead-rule"></span>Triple Double Real Estate — Homepage Redesign
+        </p>
+        <p class="mono">Investment · Operations · Management</p>
+      </div>
+    </section>
+
+    <!-- ============ 02 DESKTOP OVERVIEW 1920x1200 ============ -->
+    <section class="board board--tall" id="b02">
+      <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="bar">
+        <img src="/img/logo-white.png" alt="" />
+        <p class="mono">Desktop — 1440 px</p>
+      </div>
+      <div class="cap" style="top: 246px">
+        <p class="mono idx">01 — Overview</p>
+        <h2>Hero, positioning and track record.</h2>
+        <p>
+          A full-bleed view of a building the firm actually owns, a single
+          institutional claim, and four verified figures — all above the fold
+          and one scroll below it.
+        </p>
+        <ul>
+          <li><b>01</b><span>Transparent header over the hero, solid on scroll</span></li>
+          <li><b>02</b><span>Coordinates and data rail in monospace</span></li>
+          <li><b>03</b><span>Statistics footnoted to separate firm from career figures</span></li>
+        </ul>
+      </div>
+      <div class="plate" style="top: 150px; left: 630px">
+        <img class="shot" src="/screenshots/_press/overview.png" width="1180" alt="" />
+      </div>
+    </section>
+
+    <!-- ============ 03 EXPERTISE + PORTFOLIO 1920x1200 ============ -->
+    <section class="board board--tall" id="b03">
+      <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="bar">
+        <img src="/img/logo-white.png" alt="" />
+        <p class="mono">Desktop — 1440 px</p>
+      </div>
+      <div class="cap" style="top: 246px">
+        <p class="mono idx">02 — Expertise &amp; portfolio</p>
+        <h2>Capabilities, then proof.</h2>
+        <p>
+          Three disciplines set out as a ruled editorial list, followed by the
+          firm's flagship Miami asset with its verified facts beside it.
+        </p>
+        <ul>
+          <li><b>01</b><span>Photography follows the discipline being read</span></li>
+          <li><b>02</b><span>Featured asset shown at native resolution</span></li>
+          <li><b>03</b><span>Every figure drawn from published material</span></li>
+        </ul>
+      </div>
+      <figure class="plate" style="top: 140px; left: 630px; width: 1180px">
+        <img class="shot" src="/screenshots/_press/b-expertise.png" width="1180" alt="" />
+        <figcaption><span class="label">Expertise</span><span class="mono">§ 02</span></figcaption>
+      </figure>
+      <figure class="plate" style="top: 676px; left: 630px; width: 1180px">
+        <img class="shot" src="/screenshots/_press/b-portfolio.png" width="1180" alt="" />
+        <figcaption><span class="label">Featured asset</span><span class="mono">§ 03</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ 04 APPROACH + LEADERSHIP 1920x1200 ============ -->
+    <section class="board board--tall" id="b04">
+      <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="bar">
+        <img src="/img/logo-white.png" alt="" />
+        <p class="mono">Desktop — 1440 px</p>
+      </div>
+      <div class="cap" style="top: 246px">
+        <p class="mono idx">03 — Approach &amp; people</p>
+        <h2>How value is made, and who makes it.</h2>
+        <p>
+          A five-step sequence drawn as a ruled diagram rather than a row of
+          cards, then the leadership the model depends on.
+        </p>
+        <ul>
+          <li><b>01</b><span>Identify · Acquire · Reposition · Operate · Grow</span></li>
+          <li><b>02</b><span>Architectural texture held under a navy gradient</span></li>
+          <li><b>03</b><span>Portraits desaturated, returning to colour on hover</span></li>
+        </ul>
+      </div>
+      <figure class="plate" style="top: 140px; left: 630px; width: 1180px">
+        <img class="shot" src="/screenshots/_press/b-approach.png" width="1180" alt="" />
+        <figcaption><span class="label">Value creation</span><span class="mono">§ 04</span></figcaption>
+      </figure>
+      <figure class="plate" style="top: 676px; left: 630px; width: 1180px">
+        <img class="shot" src="/screenshots/_press/b-about.png" width="1180" alt="" />
+        <figcaption><span class="label">Leadership</span><span class="mono">§ 05</span></figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ 05 RESPONSIVE 1920x1200 ============ -->
+    <section class="board board--tall" id="b05">
+      <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="bar">
+        <img src="/img/logo-white.png" alt="" />
+        <p class="mono">1440 · 834 · 390 px</p>
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 172px;
+          left: 110px;
+          right: 110px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 40px;
+        "
+      >
+        <div style="max-width: 620px">
+          <p class="mono idx" style="display: flex; align-items: center; gap: 14px; color: var(--faint)">
+            04 — Responsive
+          </p>
+          <h2
+            style="
+              font-family: var(--display);
+              font-weight: 700;
+              font-size: 42px;
+              line-height: 1.05;
+              letter-spacing: -0.032em;
+              color: #fff;
+              margin-top: 18px;
+            "
+          >
+            One layout, three densities.
+          </h2>
+        </div>
+        <p style="font-size: 16px; line-height: 1.6; color: var(--soft); max-width: 560px">
+          Validated at 1440, 1024, 834, 768, 430, 390, 375 and 320&nbsp;px with no
+          horizontal overflow. The hero switches to a taller crop below 700&nbsp;px;
+          navigation becomes a full-screen panel with a focus trap.
+        </p>
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 296px;
+          left: 110px;
+          right: 110px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 78px;
+        "
+      >
+        <figure style="width: 860px">
+          <img class="shot" src="/screenshots/_press/rd-desktop.png" width="860" alt="" />
+          <figcaption style="margin-top: 16px; display: flex; justify-content: space-between; color: var(--faint)">
+            <span class="label">Desktop</span><span class="mono">1440</span>
+          </figcaption>
+        </figure>
+        <figure style="width: 498px">
+          <img class="shot" src="/screenshots/_press/rd-tablet.png" width="498" alt="" />
+          <figcaption style="margin-top: 16px; display: flex; justify-content: space-between; color: var(--faint)">
+            <span class="label">Tablet</span><span class="mono">834</span>
+          </figcaption>
+        </figure>
+        <figure style="width: 233px">
+          <img class="shot" src="/screenshots/_press/rd-mobile.png" width="233" alt="" />
+          <figcaption style="margin-top: 16px; display: flex; justify-content: space-between; color: var(--faint)">
+            <span class="label">Mobile</span><span class="mono">390</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <script>
+      const only = new URLSearchParams(location.search).get("board");
+      if (only) document.body.dataset.only = only;
+    </script>
+  </body>
+</html>

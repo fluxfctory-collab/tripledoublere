@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Triple Double Real Estate — Design tokens
+   Palette derived from the existing brand mark: navy #00274C, yellow #FFCB05
+   ========================================================================== */
+
+:root {
+  /* ---- Colour ---------------------------------------------------------- */
+  --c-navy: #00274c;          /* brand navy — primary institutional colour   */
+  --c-navy-deep: #001a34;     /* deeper navy for full-bleed bands            */
+  --c-navy-700: #123a63;
+  --c-navy-500: #2c5581;
+  --c-navy-300: #7d97b3;
+
+  --c-stone: #f4f2ed;         /* warm paper — default page ground            */
+  --c-stone-2: #eae6de;       /* alternating band                            */
+  --c-stone-3: #ded8cd;       /* image placeholder ground                    */
+  --c-white: #ffffff;
+
+  --c-text: #17222f;          /* body copy on light                          */
+  --c-text-soft: #4a5867;     /* secondary copy on light                     */
+  --c-text-faint: #5c6773;    /* micro-labels — 4.6:1 on the stone band      */
+
+  --c-on-dark: #f3f1ec;
+  --c-on-dark-soft: #b3c2d1;
+  --c-on-dark-faint: #8ba0b5; /* 5.6:1 on brand navy                         */
+
+  --c-accent: #ffcb05;        /* brand yellow — used sparingly               */
+  --c-accent-ink: #7d5c05;    /* accessible accent text on light grounds     */
+
+  --c-rule: rgba(0, 39, 76, 0.14);
+  --c-rule-strong: rgba(0, 39, 76, 0.26);
+  --c-rule-dark: rgba(243, 241, 236, 0.16);
+  --c-rule-dark-soft: rgba(243, 241, 236, 0.09);
+
+  --c-focus: #ffcb05;
+
+  /* ---- Type ------------------------------------------------------------
+     Display : Instrument Sans 600/700 — architectural, tightly tracked
+     Text/UI : Manrope 400/500/600 — body copy, navigation, buttons
+     Mono    : IBM Plex Mono 400/500 — section indices, metadata, coordinates
+     -------------------------------------------------------------------- */
+  --f-display: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Fluid scale, 320 → 1440. Tuned for a bold sans: shorter than the previous
+     light serif at equivalent presence, with far tighter tracking. */
+  --t-hero: clamp(2.6rem, 1.02rem + 6.3vw, 5.5rem);
+  --t-display: clamp(2.05rem, 1.24rem + 3.5vw, 3.7rem);
+  --t-h2: clamp(1.8rem, 1.28rem + 2.3vw, 2.85rem);
+  --t-h3: clamp(1.2rem, 1.06rem + 0.66vw, 1.55rem);
+  --t-lead: clamp(1.06rem, 0.98rem + 0.38vw, 1.3rem);
+  --t-body: clamp(0.97rem, 0.93rem + 0.2vw, 1.06rem);
+  --t-stat: clamp(2.8rem, 1.7rem + 4.6vw, 4.75rem);
+  --t-small: 0.9375rem;
+  --t-micro: 0.8125rem;
+  --t-nano: 0.75rem;
+
+  --ls-display: -0.035em;
+  --ls-h2: -0.028em;
+  --ls-h3: -0.02em;
+  --ls-mono: 0.14em;
+  --ls-ui: 0.075em;
+
+  /* ---- Space ----------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --section-y: clamp(4.5rem, 2.4rem + 6.6vw, 8.75rem);
+  --gutter: clamp(1.25rem, 0.35rem + 2.9vw, 4.5rem);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --container: 1320px;
+  --container-narrow: 940px;
+  --header-h: 88px;
+  --radius: 2px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --e-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --e-inout: cubic-bezier(0.65, 0.05, 0.36, 1);
+  --d-fast: 180ms;
+  --d-mid: 380ms;
+  --d-slow: 900ms;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-h: 70px;
+  }
+}
