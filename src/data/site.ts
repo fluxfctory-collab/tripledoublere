@@ -56,9 +56,9 @@ export const expertise = [
     index: "01",
     title: "Investment",
     summary:
-      "Location first, condition second. The firm buys where the address already works and the building does not yet — and prices the gap between the two.",
+      "Location first, condition second. We buy where the address already works and the building does not yet.",
     detail:
-      "Two decades of underwriting across medical office, multifamily, hospitality, office, parking, industrial and mixed-use. Deals are sized by the people who will be responsible for the asset afterwards, which tends to keep the assumptions honest.",
+      "Two decades of underwriting across medical office, multifamily, hospitality, office, parking, industrial and mixed-use.",
     tags: ["Medical office", "Urban assets", "Mixed-use", "Industrial"],
     image: "exp-investment",
     alt: "Aerial view of the Towers of Coral Springs office property in Coral Springs, Florida.",
@@ -68,9 +68,9 @@ export const expertise = [
     index: "02",
     title: "Operations & Value Creation",
     summary:
-      "Closing is the start of the work. Empty floors get leased, tired buildings get capital, and the ones that need a different purpose get one.",
+      "Closing is where the work starts. Empty floors get leased, tired buildings get capital, and some get a different purpose entirely.",
     detail:
-      "Four specialist teams carry that work: urban assets, medical office, workforce housing and adaptive re-use. Between them they have taken hotels into residential use and brought public finance to bear on downtown buildings that had run out of options.",
+      "Four specialist teams — including hotel conversions to residential and tax-credit-supported downtown redevelopment.",
     tags: ["Repositioning", "Lease-up", "Workforce housing", "Adaptive re-use"],
     image: "exp-operations",
     alt: "The 6190 Powers Ferry office building in Sandy Springs, Georgia, seen through mature trees.",
@@ -80,9 +80,9 @@ export const expertise = [
     index: "03",
     title: "Management & Leasing",
     summary:
-      "The buildings are run by the firm that owns them — two management companies on the ground, and a leasing desk that knows medical tenants.",
+      "The buildings are run by the firm that owns them — two management companies on the ground, and a leasing desk built for medical tenants.",
     detail:
-      "Commercial office and retail sit with Triple Double Property Management; medical office sits with Med Prop Management. Because maintenance, construction and brokerage are staff rather than vendors, a decision reaches the building in days instead of quarters.",
+      "Maintenance, construction and brokerage are staff, not vendors, so decisions reach the building in days.",
     tags: ["Property management", "Tenant representation", "In-house construction"],
     image: "exp-management",
     alt: "Medical office building at 4700 North Congress Avenue, West Palm Beach, Florida.",
@@ -95,7 +95,7 @@ export const featured = {
   type: "Urban office",
   year: "Acquired 2022",
   blurb:
-    "Two towers on the same block of Miami's civic core — a 26-storey building anchored by a bank, and a 12-storey neighbour with retail at street level. A downtown position of a kind that rarely trades.",
+    "Two towers on the same block of Miami's civic core — a 26-storey building anchored by a bank, and a 12-storey neighbour with retail at street level.",
   facts: [
     { k: "Tower", v: "26 storeys / 164,312 SF" },
     { k: "Companion building", v: "12 storeys / 142,233 SF" },

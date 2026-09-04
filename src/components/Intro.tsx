@@ -36,17 +36,13 @@ export function Intro() {
 
         <Reveal className="intro__copy" delay={90}>
           <p className="lead">
-            Most owners hire the acquisition, the leasing, the construction and
-            the management separately, then spend the next decade reconciling
-            four sets of incentives. Triple Double holds all four under one roof
-            and one balance sheet.
+            Most owners hire acquisition, leasing, construction and management
+            separately, then spend a decade reconciling four sets of incentives.
+            Triple Double holds all four under one roof and one balance sheet.
           </p>
           <p className="lead">
-            The structure is the strategy. Underwriting is done by the people who
-            will answer for the building afterwards; a decision about a floor
-            plate reaches a contractor the same week. From Deerfield Beach, the
-            firm applies that model to commercial and residential assets in four
-            states.
+            Underwriting is done by the people who answer for the building
+            afterwards — from Deerfield Beach, across four states.
           </p>
           <a className="link-arrow intro__link" href="#expertise">
             How we work

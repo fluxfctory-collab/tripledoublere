@@ -22,12 +22,10 @@ export function About() {
 
           <Reveal className="about__copy" delay={80}>
             <p className="lead">
-              The leadership came to Triple Double from development, from Wall
-              Street compliance desks and from city planning departments —
-              between them, careers spent buying, building and running thousands
-              of residential units and millions of square feet of commercial
-              space. That range is why the firm is comfortable with buildings
-              other buyers find complicated.
+              Leadership drawn from development, Wall Street compliance and city
+              planning — careers spent buying, building and running thousands of
+              residential units and millions of square feet of commercial space.
+              It is why complicated buildings are the ones we look for.
             </p>
             <a
               className="link-arrow"

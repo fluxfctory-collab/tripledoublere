@@ -30,8 +30,8 @@ export function Expertise() {
               >
                 <Img
                   name={e.image}
-                  widths={[380, 560, 800]}
-                  sizes="(max-width: 1000px) 1px, 400px"
+                  widths={[380, 560, 880]}
+                  sizes="(max-width: 1000px) 1px, 440px"
                   alt=""
                 />
               </div>

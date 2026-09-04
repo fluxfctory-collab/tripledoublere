@@ -122,13 +122,40 @@ def load(f):
     return Image.open(os.path.join(SRC, f))
 
 
+def mean_luma(im):
+    a = np.asarray(im.convert("RGB"), dtype=np.float32)
+    return float((a @ np.array([0.299, 0.587, 0.114], dtype=np.float32)).mean())
+
+
+def match_luma(im, target, strength=0.65):
+    """Nudge overall value toward `target` so a mixed set of portraits reads as
+    one tonal family. Partial correction only — it never flattens the image."""
+    cur = mean_luma(im)
+    if cur <= 1:
+        return im
+    gain = 1.0 + (target / cur - 1.0) * strength
+    return ImageEnhance.Brightness(im).enhance(gain)
+
+
+def crop_box(im, cx, cy, out_w, ratio=4 / 5):
+    """Sub-crop of `out_w` width at `ratio`, centred on (cx, cy) and clamped
+    inside the frame. Used to normalise portrait framing."""
+    w, h = im.size
+    out_w = min(out_w, w)
+    out_h = min(int(round(out_w / ratio)), h)
+    out_w = min(out_w, int(round(out_h * ratio)))
+    x = max(0, min(w - out_w, int(round(cx - out_w / 2))))
+    y = max(0, min(h - out_h, int(round(cy - out_h * 0.24))))  # eye line at 24%
+    return im.crop((x, y, x + out_w, y + out_h))
+
+
 # ------------------------------------------------------------------ build ---
 
 print("HERO  (2151 W Hillsboro Blvd, Deerfield Beach FL — original 1400x700)")
 # Full frame is upscaled first so both crops are taken from real 2x pixels.
 hero_base = grade(super_res_2x(load("image35.jpg"), amount=1.05),
                   sat=0.60, contrast=1.26, bright=0.93, cool=0.07)
-emit(crop_ratio(hero_base, 16 / 9, (0.58, 0.30)), "hero", [1920, 1440, 1024], 82)
+emit(crop_ratio(hero_base, 16 / 9, (0.58, 0.30)), "hero", [2489, 1920, 1440, 1024], 80)
 emit(crop_ratio(hero_base, 3 / 4, (0.60, 0.42)), "hero-portrait", [1050, 760, 560], 82)
 
 print("FEATURED  (44 W Flagler St, Miami — right half of a stitched 1400x700)")
@@ -155,18 +182,28 @@ for name, f, anchor in [
     ("exp-management", "image41-1.jpg", (0.45, 0.50)),
 ]:
     im = crop_ratio(load(f), 4 / 5, anchor)
-    im = grade(super_res_2x(im), sat=0.55, contrast=1.10, bright=0.94)
-    emit(im, name, [800, 560, 380], 84)
+    im = grade(super_res_2x(im, amount=1.05), sat=0.55, contrast=1.10, bright=0.94)
+    im = edge_unsharp(im, amount=0.3, radius=0.9, floor=0.2)
+    emit(im, name, [880, 560, 380], 86, post_sharpen=0.28)
 
-print("LEADERSHIP PORTRAITS  (originals are 1000x1250 — downscale only)")
-for name, f in [
-    ("ldr-greenbaum", "Andrew-Greenbaum-1000x1250-2.jpg"),
-    ("ldr-wruble", "Heath-Wruble-1000x1250-2.jpg"),
-    ("ldr-preston", "Kadion-Preston-1000x1250-2.jpg"),
-    ("ldr-ives", "Karen-Ives-1000x1250-Corrected.jpg"),
-]:
-    im = grade(load(f), sat=0.58, contrast=1.06, bright=0.98, cool=0.03)
-    emit(crop_ratio(im, 4 / 5, (0.5, 0.30)), name, [760, 520, 360], 85)
+print("LEADERSHIP PORTRAITS  (originals are 1000x1250 — crop + tone only)")
+# Each source frames its subject differently. These sub-crops normalise head
+# scale and put every eye line at 24% of the frame; nothing is retouched and no
+# crop falls below 760px, so the whole set keeps one srcset.
+PORTRAITS = [
+    ("ldr-greenbaum", "Andrew-Greenbaum-1000x1250-2.jpg", 454, 238, 780),
+    ("ldr-wruble", "Heath-Wruble-1000x1250-2.jpg", 500, 300, 1000),
+    ("ldr-preston", "Kadion-Preston-1000x1250-2.jpg", 500, 219, 810),
+    ("ldr-ives", "Karen-Ives-1000x1250-Corrected.jpg", 590, 338, 885),
+]
+_portraits = [
+    (n, grade(load(f), sat=0.58, contrast=1.06, bright=0.98, cool=0.03), cx, cy, cw)
+    for n, f, cx, cy, cw in PORTRAITS
+]
+_target = sum(mean_luma(im) for _, im, *_ in _portraits) / len(_portraits)
+for name, im, cx, cy, cw in _portraits:
+    im = match_luma(im, _target)
+    emit(crop_box(im, cx, cy, cw), name, [760, 520, 360], 86)
 
 print("APPROACH BAND TEXTURE  (held at ~4% behind a navy gradient)")
 ap = grade(load("image35.jpg"), sat=0.18, contrast=1.05, bright=0.70, cool=0.08)

@@ -25,12 +25,12 @@ export function Hero() {
           />
           <source
             type="image/webp"
-            srcSet="/img/hero-1024.webp 1024w, /img/hero-1440.webp 1440w, /img/hero-1920.webp 1920w"
+            srcSet="/img/hero-1024.webp 1024w, /img/hero-1440.webp 1440w, /img/hero-1920.webp 1920w, /img/hero-2489.webp 2489w"
             sizes="100vw"
           />
           <img
             src="/img/hero-1440.jpg"
-            srcSet="/img/hero-1024.jpg 1024w, /img/hero-1440.jpg 1440w, /img/hero-1920.jpg 1920w"
+            srcSet="/img/hero-1024.jpg 1024w, /img/hero-1440.jpg 1440w, /img/hero-1920.jpg 1920w, /img/hero-2489.jpg 2489w"
             sizes="100vw"
             alt="2151 West Hillsboro Boulevard, a four-storey banded office building owned and managed by Triple Double Real Estate in Deerfield Beach, Florida."
             className="hero__img"
@@ -57,8 +57,8 @@ export function Hero() {
         </h1>
         <p className="hero__lead">
           A South Florida investment firm that acquires under-performing
-          commercial and residential buildings, repositions them, and then stays
-          on as the operator.
+          commercial and residential buildings, repositions them, and operates
+          them.
         </p>
         <div className="hero__actions">
           <a className="btn btn--light" href="#portfolio">

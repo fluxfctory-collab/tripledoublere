@@ -28,7 +28,7 @@
 
 .hdr__logo {
   width: auto;
-  height: 54px;
+  height: var(--logo-h);
   transition: opacity var(--d-mid) var(--e-out);
 }
 
@@ -271,7 +271,7 @@
   }
 
   .hdr__logo {
-    height: 44px;
+    height: var(--logo-h);
   }
 }
 

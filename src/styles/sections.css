@@ -202,7 +202,7 @@
 
 .expertise__body {
   display: grid;
-  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
   gap: clamp(2rem, 0.5rem + 4vw, 5rem);
   align-items: start;
 }
@@ -262,7 +262,12 @@
   gap: clamp(1rem, 0.3rem + 2vw, 2.75rem);
   padding-block: clamp(1.75rem, 1rem + 2.1vw, 3rem);
   border-bottom: 1px solid var(--c-rule-dark);
+  opacity: 0.84;
   transition: opacity var(--d-mid) var(--e-out);
+}
+
+.exp.is-active {
+  opacity: 1;
 }
 
 .exp__bar {
@@ -272,7 +277,8 @@
 }
 
 .exp__idx {
-  color: var(--c-accent);
+  color: var(--c-on-dark-faint);
+  transition: color var(--d-mid) var(--e-out);
   font-size: var(--t-nano);
   font-weight: 500;
   flex: none;
@@ -327,12 +333,24 @@
     color var(--d-fast) var(--e-out);
 }
 
+.exp.is-active .exp__idx {
+  color: var(--c-accent);
+}
+
 .exp.is-active .exp__tags li {
   border-color: rgba(255, 203, 5, 0.45);
   color: var(--c-on-dark);
 }
 
 @media (max-width: 1000px) {
+  .exp {
+    opacity: 1;
+  }
+
+  .exp__idx {
+    color: var(--c-accent);
+  }
+
   .expertise__stage {
     display: none;
   }
@@ -484,6 +502,7 @@
 
 .cards {
   display: grid;
+  align-items: stretch;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1.5rem, 0.3rem + 3vw, 3rem);
   padding-top: clamp(1rem, 0.5rem + 1.5vw, 2rem);
@@ -494,6 +513,11 @@
   .cards > :nth-child(2) {
     transform: translateY(3.25rem);
   }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
 }
 
 .card__media {
@@ -531,8 +555,8 @@
 }
 
 .card__type {
-  margin-top: var(--s-5);
-  padding-top: var(--s-4);
+  margin-top: auto;
+  padding-top: var(--s-5);
   border-top: 1px solid var(--c-rule);
   color: var(--c-accent-ink);
   font-family: var(--f-sans);
@@ -771,11 +795,6 @@
   filter: grayscale(0) contrast(1);
 }
 
-/* stagger the portraits into a quiet, non-uniform rhythm */
-.person:nth-child(even) {
-  margin-top: clamp(1rem, 0.4rem + 1.8vw, 2.5rem);
-}
-
 .person__name {
   margin-top: var(--s-4);
   font-family: var(--f-display);
@@ -811,11 +830,7 @@
 @media (max-width: 560px) {
   .about__people {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--s-4) var(--s-4);
-  }
-
-  .person:nth-child(even) {
-    margin-top: 0;
+    gap: var(--s-6) var(--s-4);
   }
 }
 
@@ -920,7 +935,7 @@
 
 .foot__brand img {
   width: auto;
-  height: 60px;
+  height: var(--logo-h);
 }
 
 .foot__cols {
